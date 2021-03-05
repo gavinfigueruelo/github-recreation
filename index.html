@@ -1,12 +1,119 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>gavins github</title>
-    <script src='./css/base.css'></script>
-    <script src='./js/main.js'></script>
-  </head>
-  <body>
 
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Github Recreation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/base.css">
+</head>
+
+<body>
+  <nav class="row">
+    <i class="col-2 fab fa-github"></i>
+    <input type="search" id="form1" class="col-4 nav-form" placeholder="Search or jump to..." />
+    <div class="col-6 navbtn">
+      <span>Pull request</span>
+      <span>Issues</span>
+      <span>Marketplace</span>
+      <span>Explore</span>
+    </div>
+    <div class=" col-2 nav-i">
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-plus"></i>
+    </div>
+  </nav>
+
+
+
+    <div class="row">
+      <div class="col-md-3  justify-content-center">
+        <div class="left-side">
+          <div class="user">
+          </div>
+
+
+          <div class="orgs">
+            <!-- organizations -->
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="right-side">
+          <div class="col-9">
+            <div class="input-group">
+              <div class="col-5 form-outline">
+                <input type="search" id="form1" class="form-control" placeholder="Find a repository..." />
+              </div>
+
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Type: All</option>
+                <option value="1">Public</option>
+                <option value="2">Private</option>
+                <option value="3">Sources</option>
+              </select>
+
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Language: All</option>
+                <option value="1">Python</option>
+                <option value="2">HTML</option>
+                <option value="3">CSS</option>
+              </select>
+              <button class="text-center btn btn-primary ml-3"><i class="fas fa-book"></i> New</button>
+            </div>
+
+            <div class="repos">
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- keep templates seperate from the html  -->
+    <script id="profile" type="text/x-handlebars-template">
+      <div class="row">
+        <img class="col-lg-12 user-pic" src="{{this.avatar_url}}" alt="user avatar" />
+        <p class="col-lg-12 userIRL">{{this.name}}</p>
+        <p class="col-12 username">{{this.login}}</p>
+        <i class="far fa-smile"></i>
+        <p class="col-12">{{this.bio}}</p>
+        <button class="btn btn-light btn-lg btn-block">Edit profile</button>
+        <p class="col"><i class="fas fa-users"></i> {{this.followers}}</p>
+        <p class="col">{{this.following}}</p>
+        <p><i class="fas fa-link"></i> {{this.blog}}</p>
+      </div>
+      </script>
+
+    <script id="repositories" type="text/x-handlebars-template">
+      {{#each rep}}
+        <div class="repdiv row">
+          <a class="rep-name col-11" href="{{this.html_url}}">
+            <p class="">{{this.name}}</p>
+          </a>
+          <button class="col-1 btn btn-sm star"> <i class="far fa-star"></i> Star </button>
+          <p class="rep-dec">{{this.description}}</p>
+          <p class="rep-lan"><i class="fas fa-circle {{this.language}}"></i> {{this.language}}</p>
+        </div>
+      {{/each}}
+    </script>
+
+    <script id="orgs" type="text/x-handlebars-template">
+      {{#each orgs}}
+        <div>
+          <p>Organizations</p>
+          <img class="org-pic" src="{{this.avatar_url}}" alt="orgs avatar" />
+        </div>
+      {{/each}}
+    </script>
+
+    <script src="https://kit.fontawesome.com/8ee7b0e5d5.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
+    <script src='./js/main.js'></script>
+</body>
+
 </html>
